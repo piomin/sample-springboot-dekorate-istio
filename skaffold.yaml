@@ -1,0 +1,13 @@
+apiVersion: skaffold/v2alpha1
+kind: Config
+build:
+  artifacts:
+    - image: minkowp/sample-springboot-dekorate-istio
+      jib: {}
+  tagPolicy:
+    gitCommit: {}
+deploy:
+  kubectl:
+    manifests:
+      - target/classes/META-INF/dekorate/*.json
+      - k8s/*.yaml
