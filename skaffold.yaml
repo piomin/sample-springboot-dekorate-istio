@@ -2,13 +2,14 @@ apiVersion: skaffold/v4beta5
 kind: Config
 build:
   artifacts:
-    - image: piomin/sample-springboot-dekorate-istio
+    - image: default/sample-springboot-dekorate-istio
       jib:
         args:
           - -DskipTests
   tagPolicy:
-    gitCommit: {}
+    customTemplate:
+      template: "1.0"
 manifests:
   rawYaml:
-    - target/classes/META-INF/dekorate/*.json
+    - target/classes/META-INF/dekorate/*.yml
     - k8s/*.yaml
