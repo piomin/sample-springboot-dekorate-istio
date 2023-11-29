@@ -11,6 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 @KubernetesApplication(replicas = 2,
+        partOf = "default",
         envVars = { @Env(name = "propertyEnv", value = "Hello from env!"),
                     @Env(name = "propertyFromMap", value = "property1", configmap = "sample-configmap") },
         ports = @Port(name = "http", containerPort = 8080),
