@@ -32,14 +32,14 @@ jobs:
             chmod +x ./kind
             sudo mv ./kind /usr/local/bin/kind
       - run:
-          name: Install OpenJDK 21
+          name: Install OpenJDK 25
           command: |
             java -version
-            sudo apt-get update && sudo apt-get install openjdk-21-jdk
-            sudo update-alternatives --set java /usr/lib/jvm/java-21-openjdk-amd64/bin/java
-            sudo update-alternatives --set javac /usr/lib/jvm/java-21-openjdk-amd64/bin/javac
+            sudo apt-get update && sudo apt-get install openjdk-25-jdk
+            sudo update-alternatives --set java /usr/lib/jvm/java-25-openjdk-amd64/bin/java
+            sudo update-alternatives --set javac /usr/lib/jvm/java-25-openjdk-amd64/bin/javac
             java -version
-            export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
+            export JAVA_HOME=/usr/lib/jvm/java-25-openjdk-amd64
       - run:
           name: Create Kind Cluster
           command: |
@@ -47,7 +47,7 @@ jobs:
       - run:
           name: Deploy to K8s
           command: |
-            export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
+            export JAVA_HOME=/usr/lib/jvm/java-25-openjdk-amd64
             mvn package -DskipTests
             skaffold run
       - run:
